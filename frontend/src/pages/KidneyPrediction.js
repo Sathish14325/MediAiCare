@@ -30,6 +30,7 @@ const KidneyPrediction = () => {
     pe: "no",
     ane: "no",
   });
+
   const [prediction, setPrediction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -55,244 +56,158 @@ const KidneyPrediction = () => {
     }
   };
 
+  const inputs = [
+    { label: "Age", name: "age", type: "number" },
+    { label: "Blood Pressure", name: "bp", type: "number" },
+    { label: "Specific Gravity", name: "sg", type: "number" },
+    { label: "Albumin", name: "al", type: "number" },
+    { label: "Sugar", name: "su", type: "number" },
+    { label: "Blood Glucose Random", name: "bgr", type: "number" },
+    { label: "Blood Urea", name: "bu", type: "number" },
+    { label: "Serum Creatinine", name: "sc", type: "number" },
+    { label: "Sodium", name: "sod", type: "number" },
+    { label: "Potassium", name: "pot", type: "number" },
+    { label: "Hemoglobin", name: "hemo", type: "number" },
+    { label: "Packed Cell Volume", name: "pcv", type: "number" },
+    { label: "White Blood Cell Count", name: "wc", type: "number" },
+    { label: "Red Blood Cell Count", name: "rc", type: "number" },
+  ];
+
   return (
     <>
       <Navbar />
-      <div className="flex justify-center items-center my-5 bg-gray-50">
-        <div className="bg-white p-8 rounded-md shadow-md w-full max-w-lg">
+      <div className="flex justify-center items-center my-5 bg-gray-50 px-4">
+        <div className="bg-white p-8 rounded-md shadow-md w-full max-w-4xl">
           <h1 className="text-2xl font-semibold text-center mb-6">
             Kidney Disease Prediction
           </h1>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="number"
-              name="age"
-              value={formData.age}
-              onChange={handleChange}
-              placeholder="Age"
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-            <input
-              type="number"
-              name="bp"
-              value={formData.bp}
-              onChange={handleChange}
-              placeholder="Blood Pressure"
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-            <input
-              type="number"
-              name="sg"
-              value={formData.sg}
-              onChange={handleChange}
-              placeholder="Specific Gravity"
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-            <input
-              type="number"
-              name="al"
-              value={formData.al}
-              onChange={handleChange}
-              placeholder="Albumin"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="number"
-              name="su"
-              value={formData.su}
-              onChange={handleChange}
-              placeholder="Sugar"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="text"
-              name="rbc"
-              value={formData.rbc}
-              onChange={handleChange}
-              placeholder="Red Blood Cells"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="text"
-              name="pc"
-              value={formData.pc}
-              onChange={handleChange}
-              placeholder="Pus Cell"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="text"
-              name="pcc"
-              value={formData.pcc}
-              onChange={handleChange}
-              placeholder="Pus Cell clumps"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="text"
-              name="ba"
-              value={formData.ba}
-              onChange={handleChange}
-              placeholder="Bacteria"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="number"
-              name="bgr"
-              value={formData.bgr}
-              onChange={handleChange}
-              placeholder="Blood Glucose Random"
-              className="w-full p-2 border border-gray-300 rounded-md"
-              required
-            />
-            <input
-              type="number"
-              name="bu"
-              value={formData.bu}
-              onChange={handleChange}
-              placeholder="Blood Urea"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="number"
-              name="sc"
-              value={formData.sc}
-              onChange={handleChange}
-              placeholder="Serum Creatinine"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="number"
-              name="sod"
-              value={formData.sod}
-              onChange={handleChange}
-              placeholder="Sodium"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="number"
-              name="pot"
-              value={formData.pot}
-              onChange={handleChange}
-              placeholder="Potassium"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="number"
-              name="hemo"
-              value={formData.hemo}
-              onChange={handleChange}
-              placeholder="Hemoglobin"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="number"
-              name="pcv"
-              value={formData.pcv}
-              onChange={handleChange}
-              placeholder="Packed Cell Volume"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="number"
-              name="wc"
-              value={formData.wc}
-              onChange={handleChange}
-              placeholder="White Blood Cell Count"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <input
-              type="number"
-              name="rc"
-              value={formData.rc}
-              onChange={handleChange}
-              placeholder="Red Blood Cell Count"
-              className="w-full p-2 border border-gray-300 rounded-md"
-            />
-            <select
-              name="htn"
-              value={formData.htn}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            >
-              <option value="no">No Hypertension</option>
-              <option value="yes">Yes Hypertension</option>
-            </select>
-            <select
-              name="dm"
-              value={formData.dm}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            >
-              <option value="no">No Diabetes Mellitus</option>
-              <option value="yes">Yes Diabetes Mellitus</option>
-            </select>
-            <select
-              name="cad"
-              value={formData.cad}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            >
-              <option value="no">No Coronary Artery Disease</option>
-              <option value="yes">Yes Coronary Artery Disease</option>
-            </select>
-            <select
-              name="appet"
-              value={formData.appet}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            >
-              <option value="good">Good Appetite</option>
-              <option value="poor">Poor Appetite</option>
-            </select>
-            <select
-              name="pe"
-              value={formData.pe}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            >
-              <option value="no">No Pedal Edema</option>
-              <option value="yes">Yes Pedal Edema</option>
-            </select>
-            <select
-              name="ane"
-              value={formData.ane}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md"
-            >
-              <option value="no">No Anemia</option>
-              <option value="yes">Yes Anemia</option>
-            </select>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {inputs.map(({ label, name, type }) => (
+                <div key={name}>
+                  <label className="block font-medium mb-1">{label}</label>
+                  <input
+                    type={type}
+                    name={name}
+                    value={formData[name]}
+                    onChange={handleChange}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                    required={["age", "bp", "sg", "bgr"].includes(name)}
+                  />
+                </div>
+              ))}
+
+              {/* Dropdowns below */}
+
+              <div>
+                <label className="block font-medium mb-1">
+                  Red Blood Cells
+                </label>
+                <select
+                  name="rbc"
+                  value={formData.rbc}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="normal">Normal</option>
+                  <option value="abnormal">Abnormal</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block font-medium mb-1">Pus Cells</label>
+                <select
+                  name="pc"
+                  value={formData.pc}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="normal">Normal</option>
+                  <option value="abnormal">Abnormal</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block font-medium mb-1">
+                  Pus Cell Clumps
+                </label>
+                <select
+                  name="pcc"
+                  value={formData.pcc}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="notpresent">Not Present</option>
+                  <option value="present">Present</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block font-medium mb-1">Bacteria</label>
+                <select
+                  name="ba"
+                  value={formData.ba}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded-md"
+                >
+                  <option value="notpresent">Not Present</option>
+                  <option value="present">Present</option>
+                </select>
+              </div>
+
+              {[
+                { name: "htn", label: "Hypertension" },
+                { name: "dm", label: "Diabetes Mellitus" },
+                { name: "cad", label: "Coronary Artery Disease" },
+                { name: "appet", label: "Appetite", options: ["good", "poor"] },
+                { name: "pe", label: "Pedal Edema" },
+                { name: "ane", label: "Anemia" },
+              ].map(({ name, label, options }) => (
+                <div key={name}>
+                  <label className="block font-medium mb-1">{label}</label>
+                  <select
+                    name={name}
+                    value={formData[name]}
+                    onChange={handleChange}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                  >
+                    {(options || ["no", "yes"]).map((opt) => (
+                      <option key={opt} value={opt}>
+                        {opt.charAt(0).toUpperCase() + opt.slice(1)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ))}
+            </div>
 
             <button
               type="submit"
-              className="w-full py-2 bg-blue-500 text-white rounded-md"
+              className="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
               disabled={loading}
             >
               {loading ? "Predicting..." : "Predict Kidney Disease"}
             </button>
           </form>
 
-          {/* Show the prediction result */}
           {prediction && (
             <div className="mt-6 text-center">
-              <p>Your kidney disease prediction: </p>
+              <p className="text-lg font-medium">Prediction Result:</p>
               <h2
-                className={`font-semibold text-4xl ${
+                className={`font-bold text-2xl mt-2 ${
                   prediction === "ckd" ? "text-red-500" : "text-green-500"
                 }`}
               >
                 {prediction === "ckd"
                   ? "Chronic Kidney Disease (CKD)"
-                  : "No CKD"}
+                  : "No CKD Detected"}
               </h2>
+              <button className="mt-4 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
+                Book Appointment with Doctor
+              </button>
             </div>
           )}
 
-          {/* Show error message if there's an issue */}
           {error && (
             <div className="mt-6 text-center text-red-500">
               <p>{error}</p>

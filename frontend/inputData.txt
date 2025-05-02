@@ -53,7 +53,6 @@ chills, high_fever, sweating, headache
 
 // kidney prediction
   {
-    id: 999,
     age: 53.0,
     bp: 80.0,
     sg: 1.02,

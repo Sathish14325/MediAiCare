@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors"); // Add this line
 
 const heartRoutes = require("./routes/heartRoutes");
+const chatbotRoutes = require("./routes/chatbot.js");
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use("/api/healthPredict", require("./routes/healthPredict"));
 app.use("/api/predict-diabetes", require("./routes/diabetes"));
 app.use("/api/predict-kidney", require("./routes/kidneyPrediction"));
 app.use("/api/predict-heart", heartRoutes);
+app.use("/api/chatbot", chatbotRoutes);
 
 // Root route
 app.get("/", (req, res) => {

@@ -6,8 +6,11 @@ import os
 import joblib
 import ast
 from flask_cors import CORS
+from chatbot import chatbot
 
 
+# Index the PDF at startup if needed
+chatbot.index_pdf_if_needed()
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000"])
@@ -93,6 +96,8 @@ def get_disease_info(disease):
     wrk = workout[workout['disease'] == disease]['workout'].tolist()
     
     return desc, pre, med, diet, wrk
+
+
 
 
 # API endpoint for symptoms predict
@@ -185,6 +190,23 @@ def predict_heart():
     
     return jsonify({'prediction': result})
 
+
+@app.route('/ask', methods=['POST'])
+def ask():
+    data = request.get_json()
+    question = data.get("question", "")
+    if not question:
+        return jsonify({"error": "No question provided"}), 400
+
+    try:
+        answer = chatbot.get_answer(question)
+        return jsonify({"answer": answer})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify({"status": "running"}), 200
 
 if __name__ == '__main__':
     app.run(debug=True, port=1000)

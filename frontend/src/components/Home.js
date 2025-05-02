@@ -87,7 +87,7 @@ const Home = () => {
                 <Button primary onClick={() => handleButtonClick("/login")}>
                   Get Started
                 </Button>
-                <Button onClick={() => handleButtonClick("/login")}>
+                <Button onClick={() => handleButtonClick("/patient")}>
                   Book Appointment
                 </Button>
               </div>
