@@ -1,0 +1,12 @@
+**existing system symptom checker**
+for example "abdominal swelling, easy bruising, stool and urine color changes, and jaundice"
+if i give improper symptom it will give me as result [Unknown Disease - No valid symptoms provided]
+    that's why we are craeting a ai chatbot 
+
+for example "abdominal swelling, easy bruising, stool and urine color changes, and jaundice"
+o/p: *The symptoms of abdominal swelling, easy bruising, changes in stool and urine color, and jaundice may indicate liver disease. 
+    Liver dysfunction can cause bilirubin buildup, leading to jaundice and color changes in urine and stools. 
+    It can also result in ascites (abdominal swelling) and clotting issues from low platelets or clotting factor deficiencies. 
+    Consulting a healthcare professional for tests like liver function tests or an ultrasound is advisable to confirm the diagnosis.*
+
+

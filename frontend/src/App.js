@@ -19,6 +19,7 @@ import HeartPrediction from "./pages/HeartPrediction";
 import ServicesPage from "./pages/ServicesPage";
 import ChatbotPage from "./pages/ChatbotPage";
 import ImageQueryUploader from "./pages/ImageQueryUploader";
+import FindDoctor from "./pages/FindDoctor";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
           <Route path="/chatbot" element={<ChatbotPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/img-diagnosis" element={<ImageQueryUploader />} />
+          <Route path="/find-docters" element={<FindDoctor />} />
         </Routes>
       </div>
     </Router>
