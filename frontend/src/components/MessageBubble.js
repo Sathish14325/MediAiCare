@@ -1,33 +1,47 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-const typingAnimation = {
-  animate: {
-    opacity: [0.3, 1, 0.3],
-    transition: {
-      duration: 1,
-      repeat: Infinity,
-    },
-  },
-};
+const MessageBubble = ({ sender, text, isLoading, isButton }) => {
+  const isBot = sender === "bot";
+  const navigate = useNavigate();
 
-const MessageBubble = ({ sender, text, isLoading = false }) => {
-  const isUser = sender === "user";
+  if (isButton) {
+    return (
+      <div className={`flex ${isBot ? "justify-start" : "justify-end"}`}>
+        <div className="flex flex-col items-start gap-2 max-w-[80%]">
+          <div className="rounded-2xl px-4 py-2 bg-blue-100 text-gray-800 shadow">
+            {text}
+          </div>
+          <button
+            className="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition"
+            onClick={() => navigate("/find-docters")}
+          >
+            Find Doctor
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
-      <div
-        className={`px-4 py-2 rounded-2xl max-w-[75%] shadow ${
-          isUser ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-900"
-        }`}
-      >
-        {isLoading ? (
-          <motion.div {...typingAnimation} className="text-sm">
-            {text}
-          </motion.div>
-        ) : (
-          <span className="whitespace-pre-line">{text}</span>
-        )}
+    <div className={`flex ${isBot ? "justify-start" : "justify-end"}`}>
+      <div className={`flex items-start gap-2 max-w-[80%]`}>
+        {isBot && <div className="text-xl">🤖</div>}
+        <div
+          className={`rounded-2xl px-4 py-2 shadow ${
+            isBot ? "bg-blue-100 text-gray-800" : "bg-blue-600 text-white"
+          }`}
+        >
+          {isLoading ? (
+            <div className="flex space-x-1">
+              <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:0s]"></div>
+              <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:0.2s]"></div>
+              <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce [animation-delay:0.4s]"></div>
+            </div>
+          ) : (
+            text
+          )}
+        </div>
       </div>
     </div>
   );

@@ -26,8 +26,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_API_KEY = "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"
+GROQ_API_URL = os.getenv("GROQ_API_URL")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 @app.post("/upload_and_query")
 async def upload_and_query(image: UploadFile = File(...), query: str = Form(...)):

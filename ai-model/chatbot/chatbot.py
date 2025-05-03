@@ -9,13 +9,16 @@ from langchain.chains.combine_documents.stuff import StuffDocumentsChain
 from langchain.chains import RetrievalQA
 from langchain_groq import ChatGroq
 import re
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # === Config ===
-MONGO_URI = "mongodb+srv://sathish:sathishdev@jwt1.ydtu0.mongodb.net/?retryWrites=true&w=majority&appName=jwt1"
-DB_NAME = "medical-rag-chatbot"
-COLLECTION_NAME = "embeddings"
-PDF_PATH = "medical_book1.pdf"
-GROQ_API_KEY = "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"
+
+MONGO_URI = os.getenv("MONGO_URI")
+DB_NAME = os.getenv("DB_NAME")
+COLLECTION_NAME = os.getenv("COLLECTION_NAME")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # === Embeddings + MongoDB ===
 client = MongoClient(MONGO_URI)
